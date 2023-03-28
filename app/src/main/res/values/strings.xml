@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">NU_MAD_SP2023_Final_Project_15</string>
     <string name="google_map_api_key">AIzaSyBIxPUIlgWvpiqzbv8Y1ovoxmDoiDiHEUQ</string>
+    <string name="empty" />
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="disp_name">Display Name</string>
+    <string name="em">Email</string>
+    <string name="pass">Password</string>
+    <string name="conf_pass">Confirm Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="or">OR</string>
+    <string name="login">Login</string>
 </resources>
