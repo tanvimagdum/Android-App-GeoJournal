@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <TextView
+        android:id="@+id/lblProfileFName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/lblProfileFName"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfileAvatar" />
+
+    <TextView
+        android:id="@+id/lblProfileLName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfileLName"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfileFName"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileFName" />
+
+    <TextView
+        android:id="@+id/lblProfileDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfileDisplayName"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfileLName"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileLName" />
+
+    <EditText
+        android:id="@+id/txtProfileFName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfileFName"
+        app:layout_constraintStart_toEndOf="@+id/lblProfileFName"
+        app:layout_constraintTop_toTopOf="@+id/lblProfileFName" />
+
+    <EditText
+        android:id="@+id/txtProfileLName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfileLName"
+        app:layout_constraintStart_toEndOf="@+id/lblProfileLName"
+        app:layout_constraintTop_toTopOf="@+id/lblProfileLName" />
+
+    <EditText
+        android:id="@+id/txtProfileDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfileDisplayName"
+        app:layout_constraintStart_toEndOf="@+id/lblProfileDisplayName"
+        app:layout_constraintTop_toTopOf="@+id/lblProfileDisplayName" />
+
+    <TextView
+        android:id="@+id/lblProfileEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfileEmail"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfileDisplayName"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileDisplayName" />
+
+    <EditText
+        android:id="@+id/txtProfileEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfileEmail"
+        app:layout_constraintStart_toEndOf="@+id/lblProfileEmail"
+        app:layout_constraintTop_toTopOf="@+id/lblProfileEmail" />
+
+    <TextView
+        android:id="@+id/lblProfilePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfilePassword"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfileEmail"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileEmail" />
+
+    <EditText
+        android:id="@+id/txtProfilePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfilePassword"
+        app:layout_constraintStart_toEndOf="@+id/lblProfilePassword"
+        app:layout_constraintTop_toTopOf="@+id/lblProfilePassword" />
+
+    <TextView
+        android:id="@+id/lblProfileConfirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfileConfirmPassword"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfilePassword"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfilePassword" />
+
+    <EditText
+        android:id="@+id/txtProfileConfirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfileConfirmPassword"
+        app:layout_constraintStart_toEndOf="@+id/lblProfileConfirmPassword"
+        app:layout_constraintTop_toTopOf="@+id/lblProfileConfirmPassword" />
+
+    <TextView
+        android:id="@+id/lblProfileDOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfileDOB"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfileConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileConfirmPassword" />
+
+    <EditText
+        android:id="@+id/txtProfileDOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfileDOB"
+        app:layout_constraintStart_toEndOf="@+id/lblProfileDOB"
+        app:layout_constraintTop_toTopOf="@+id/lblProfileDOB" />
+
+    <TextView
+        android:id="@+id/lblProfilePhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblProfilePhone"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblProfileDOB"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileDOB" />
+
+    <EditText
+        android:id="@+id/txtProfilePhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="@+id/lblProfilePhone"
+        app:layout_constraintStart_toEndOf="@+id/lblProfilePhone"
+        app:layout_constraintTop_toTopOf="@+id/lblProfilePhone" />
+
+    <ImageView
+        android:id="@+id/imgProfileAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/lblProfileSelectPhoto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#B70C0C0C"
+        android:text="@string/lblProfileSelectPhoto"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/imgProfileAvatar"
+        app:layout_constraintEnd_toEndOf="@+id/imgProfileAvatar"
+        app:layout_constraintStart_toStartOf="@+id/imgProfileAvatar" />
+
+    <Button
+        android:id="@+id/btnProfileSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnProfileSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtProfilePhone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

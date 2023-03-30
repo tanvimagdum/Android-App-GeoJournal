@@ -2,13 +2,28 @@
     <string name="app_name">NU_MAD_SP2023_Final_Project_15</string>
     <string name="google_map_api_key">AIzaSyBIxPUIlgWvpiqzbv8Y1ovoxmDoiDiHEUQ</string>
     <string name="empty" />
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="disp_name">Display Name</string>
-    <string name="em">Email</string>
-    <string name="pass">Password</string>
-    <string name="conf_pass">Confirm Password</string>
-    <string name="signup">Sign Up</string>
-    <string name="or">OR</string>
-    <string name="login">Login</string>
+
+    <string name="hintLoginEmail">Email</string>
+    <string name="hintLoginPassword">Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="lblOR">OR</string>
+    <string name="hintSignUpEmail">Email</string>
+    <string name="hintSignUpPassword">Password</string>
+    <string name="hintSignUpConfirmPassword">Confirm Password</string>
+    <string name="hintSignUpFName">First Name</string>
+    <string name="hintSignUpLName">Last Name</string>
+    <string name="hintSignUpDisplayName">Display Name</string>
+    <string name="btnSignUp">Sign Up</string>
+
+    <string name="lblProfileFName">First Name :</string>
+    <string name="lblProfileLName">Last Name :</string>
+    <string name="lblProfileDisplayName">Display Name :</string>
+    <string name="lblProfileEmail">Email :</string>
+    <string name="lblProfilePassword">Password :</string>
+    <string name="lblProfileConfirmPassword">Confirm Password :</string>
+    <string name="lblProfileDOB">Date of Birth :</string>
+    <string name="lblProfilePhone">Phone :</string>
+    <string name="lblProfileSelectPhoto">Select Photo</string>
+    <string name="btnProfileSave">Save Profile</string>
+
 </resources>
