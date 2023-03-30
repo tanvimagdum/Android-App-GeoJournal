@@ -26,4 +26,11 @@
     <string name="lblProfileSelectPhoto">Select Photo</string>
     <string name="btnProfileSave">Save Profile</string>
 
+    <string name="lblDisplayTravelDate">Travel Date :</string>
+    <string name="lblDisplayItinerary">Itinerary and Plans</string>
+    <string name="lblDisplayCulture">Culture and Cuisine</string>
+    <string name="lblTravelTips">Travel Tips</string>
+    <string name="lblDisplayReflections">Reflections and Thoughts</string>
+    <string name="lblDisplayLanguage">Language Notes</string>
+
 </resources>
