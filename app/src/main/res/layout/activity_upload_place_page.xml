@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadPlacePage">
+
+    <TextView
+        android:id="@+id/lblUploadTravelPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/lblUploadTravelPlace"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtUploadTravelPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/lblUploadTravelPlace"
+        app:layout_constraintStart_toEndOf="@+id/lblUploadTravelPlace"
+        app:layout_constraintTop_toTopOf="@+id/lblUploadTravelPlace" />
+
+    <TextView
+        android:id="@+id/lblUploadTravelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/lblUploadTravelDate"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lblUploadTravelPlace"
+        app:layout_constraintTop_toBottomOf="@+id/lblUploadTravelPlace" />
+
+    <EditText
+        android:id="@+id/txtUploadTravelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="@+id/lblUploadTravelDate"
+        app:layout_constraintStart_toEndOf="@+id/lblUploadTravelDate"
+        app:layout_constraintTop_toTopOf="@+id/lblUploadTravelDate" />
+
+    <Button
+        android:id="@+id/btnUploadPlaceNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnUploadPlaceNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUploadTravelDate" />
+
+    <Button
+        android:id="@+id/btnUploadPlaceExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btnUploadPlaceExit"
+        app:layout_constraintEnd_toEndOf="@+id/btnUploadPlaceNext"
+        app:layout_constraintStart_toStartOf="@+id/btnUploadPlaceNext"
+        app:layout_constraintTop_toBottomOf="@+id/btnUploadPlaceNext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

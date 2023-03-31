@@ -32,5 +32,14 @@
     <string name="lblTravelTips">Travel Tips</string>
     <string name="lblDisplayReflections">Reflections and Thoughts</string>
     <string name="lblDisplayLanguage">Language Notes</string>
+    <string name="lblDisplayExpenses">Expenses</string>
+
+    <string name="lblUploadTravelPlace">Travel Place</string>
+    <string name="lblUploadTravelDate">Travel Date</string>
+    <string name="btnUploadPlaceNext">Save and Next</string>
+    <string name="btnUploadPlaceExit">Back to Home</string>
+    <string name="btnUploadPicture">Upload Picture</string>
+    <string name="btnUploadPictureNext">Save and Next</string>
+    <string name="btnUploadPictureExit">Back to Home</string>
 
 </resources>
