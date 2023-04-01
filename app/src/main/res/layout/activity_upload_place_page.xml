@@ -20,10 +20,11 @@
 
     <EditText
         android:id="@+id/txtUploadTravelPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:ems="10"
+        android:hint="@string/hintUploadTravelPlace"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/lblUploadTravelPlace"
         app:layout_constraintStart_toEndOf="@+id/lblUploadTravelPlace"
@@ -42,10 +43,11 @@
 
     <EditText
         android:id="@+id/txtUploadTravelDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:ems="10"
+        android:hint="@string/hintUploadTravelDate"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="@+id/lblUploadTravelDate"
         app:layout_constraintStart_toEndOf="@+id/lblUploadTravelDate"
@@ -55,7 +57,7 @@
         android:id="@+id/btnUploadPlaceNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="@string/btnUploadPlaceNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

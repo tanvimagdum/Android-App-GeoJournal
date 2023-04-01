@@ -36,10 +36,30 @@
 
     <string name="lblUploadTravelPlace">Travel Place</string>
     <string name="lblUploadTravelDate">Travel Date</string>
+    <string name="hintUploadTravelPlace">Enter Place Travelled</string>
+    <string name="hintUploadTravelDate">Enter Date Travelled On</string>
     <string name="btnUploadPlaceNext">Save and Next</string>
     <string name="btnUploadPlaceExit">Back to Home</string>
     <string name="btnUploadPicture">Upload Picture</string>
     <string name="btnUploadPictureNext">Save and Next</string>
     <string name="btnUploadPictureExit">Back to Home</string>
+    <string name="lblUploadItinerary">Details about the itinerary and plan executed for the trip.</string>
+    <string name="hintUploadItinerary">Enter notes here...</string>
+    <string name="lblUploadExpense">Details about the Expenses.</string>
+    <string name="hintUploadExpense">Enter notes here...</string>
+    <string name="btnUploadIENext">Save and Next</string>
+    <string name="btnUploadIEExit">Back to Home</string>
+    <string name="lblUploadCulture">Details about the culture and cuisine of the visited place.</string>
+    <string name="hintUploadCulture">Enter notes here...</string>
+    <string name="lblUploadLanguage">Notes about languages spoken at the places of visit.</string>
+    <string name="hintUploadLanguage">Enter notes here...</string>
+    <string name="btnUploadCLNext">Save and Next</string>
+    <string name="btnUploadCLExit">Back to Home</string>
+    <string name="lblUploadReflection">Write your experiences and thoughts about the place and the trip.</string>
+    <string name="hintUploadReflection">Enter notes here...</string>
+    <string name="lblUploadTips">Write some tips to remember while travelling to this place.</string>
+    <string name="hintUploadTips">Enter notes here...</string>
+    <string name="btnUploadRTSave">Save</string>
+    <string name="btnUploadRTExit">Back to Home</string>
 
 </resources>
