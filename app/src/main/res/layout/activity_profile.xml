@@ -207,4 +207,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtProfilePhone" />
 
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btnLogout"
+        app:layout_constraintEnd_toEndOf="@+id/btnProfileSave"
+        app:layout_constraintStart_toStartOf="@+id/btnProfileSave"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileSave" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

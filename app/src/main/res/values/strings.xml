@@ -63,5 +63,6 @@
     <string name="btnUploadRTExit">Back to Home</string>
     <string name="prof">My Profile</string>
     <string name="add_loc">Add Location</string>
+    <string name="btnLogout">Log Out</string>
 
 </resources>
