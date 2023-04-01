@@ -61,5 +61,7 @@
     <string name="hintUploadTips">Enter notes here...</string>
     <string name="btnUploadRTSave">Save</string>
     <string name="btnUploadRTExit">Back to Home</string>
+    <string name="prof">My Profile</string>
+    <string name="add_loc">Add Location</string>
 
 </resources>
