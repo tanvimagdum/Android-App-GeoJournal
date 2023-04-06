@@ -1,8 +1,10 @@
-package com.example.nu_mad_sp2023_final_project_15;
+package com.example.nu_mad_sp2023_final_project_15.Display;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.nu_mad_sp2023_final_project_15.R;
 
 public class DisplayPage extends AppCompatActivity {
 

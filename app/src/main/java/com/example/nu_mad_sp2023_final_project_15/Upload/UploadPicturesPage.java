@@ -1,4 +1,4 @@
-package com.example.nu_mad_sp2023_final_project_15;
+package com.example.nu_mad_sp2023_final_project_15.Upload;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -15,6 +15,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.nu_mad_sp2023_final_project_15.LandingPage;
+import com.example.nu_mad_sp2023_final_project_15.R;
 
 import java.util.ArrayList;
 import java.util.List;

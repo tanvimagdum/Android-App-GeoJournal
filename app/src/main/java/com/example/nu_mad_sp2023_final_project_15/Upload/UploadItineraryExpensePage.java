@@ -1,4 +1,4 @@
-package com.example.nu_mad_sp2023_final_project_15;
+package com.example.nu_mad_sp2023_final_project_15.Upload;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.nu_mad_sp2023_final_project_15.LandingPage;
+import com.example.nu_mad_sp2023_final_project_15.R;
 
 public class UploadItineraryExpensePage extends AppCompatActivity {
 

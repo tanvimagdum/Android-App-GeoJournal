@@ -1,4 +1,4 @@
-package com.example.nu_mad_sp2023_final_project_15;
+package com.example.nu_mad_sp2023_final_project_15.Upload;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.nu_mad_sp2023_final_project_15.R;
 
 import java.util.List;
 
