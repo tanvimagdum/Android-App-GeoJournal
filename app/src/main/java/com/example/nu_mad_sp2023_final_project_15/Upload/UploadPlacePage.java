@@ -4,17 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
 
 public class UploadPlacePage extends AppCompatActivity {
 
-    private TextView txtUploadTravelPlace;
-    private TextView txtUploadTravelDate;
+    private EditText txtUploadTravelPlace;
+    private EditText txtUploadTravelDate;
     private Button btnUploadPlaceNext;
     private Button btnUploadPlaceExit;
 
@@ -32,7 +36,24 @@ public class UploadPlacePage extends AppCompatActivity {
         btnUploadPlaceNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String place = txtUploadTravelPlace.getText().toString().trim();
+                String date = txtUploadTravelDate.getText().toString().trim();
+
+                Log.d("place", place);
+
+                if (TextUtils.isEmpty(place)) {
+                    Toast.makeText(getApplicationContext(),"Please enter travel place", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (date.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Please enter travel date", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Intent intent = new Intent(UploadPlacePage.this, UploadPicturesPage.class);
+                intent.putExtra("place", place);
+                intent.putExtra("date", date);
                 startActivity(intent);
             }
         });

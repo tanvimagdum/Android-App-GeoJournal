@@ -12,9 +12,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
@@ -32,6 +34,8 @@ public class UploadPicturesPage extends AppCompatActivity implements View.OnClic
     private List<Uri> images = new ArrayList<>();
     private RecyclerView recyclerView;
     private UploadPictureAdapter adapter;
+    private String place = "";
+    private String date = "";
 
     ActivityResultLauncher<Intent> startActivityForResult
             = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -72,7 +76,16 @@ public class UploadPicturesPage extends AppCompatActivity implements View.OnClic
         btnUploadPictureNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (images.size() == 0) {
+                    Toast.makeText(getApplicationContext(),"Please upload at least 1 image", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Intent intent = new Intent(UploadPicturesPage.this, UploadItineraryExpensePage.class);
+                intent.putExtra("place", getIntent().getStringExtra("place"));
+                intent.putExtra("date", getIntent().getStringExtra("date"));
+                intent.putParcelableArrayListExtra("images", (ArrayList<? extends Parcelable>) images);
                 startActivity(intent);
             }
         });

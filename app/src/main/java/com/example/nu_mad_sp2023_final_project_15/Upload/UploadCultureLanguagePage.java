@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
@@ -32,7 +33,27 @@ public class UploadCultureLanguagePage extends AppCompatActivity {
         btnUploadCLNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String culture = txtUploadCulture.toString().trim();
+                String language = txtUploadLanguage.toString().trim();
+
+                if (culture.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Please enter notes on culture", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (language.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Please enter notes on language", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Intent intent = new Intent(UploadCultureLanguagePage.this, UploadReflectionTips.class);
+                intent.putExtra("place", getIntent().getStringExtra("place"));
+                intent.putExtra("date", getIntent().getStringExtra("date"));
+                intent.putExtra("images", getIntent().getParcelableArrayListExtra("images"));
+                intent.putExtra("itinerary", getIntent().getStringExtra("itinerary"));
+                intent.putExtra("expense", getIntent().getStringExtra("expense"));
+                intent.putExtra("culture", culture);
+                intent.putExtra("language", language);
                 startActivity(intent);
             }
         });
