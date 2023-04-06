@@ -65,5 +65,7 @@
     <string name="prof">My Profile</string>
     <string name="add_loc">Add Location</string>
     <string name="btnLogout">Log Out</string>
+    <string name="em" />
+    <string name="phno">Phone No</string>
 
 </resources>
