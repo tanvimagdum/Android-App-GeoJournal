@@ -45,10 +45,6 @@ public class UploadPicturesPage extends AppCompatActivity implements View.OnClic
                         }
                         images.add(imageUri);
                         adapter.notifyDataSetChanged();
-//                        if (imgPreview != null) {
-//                            imgPreview.setVisibility(View.VISIBLE);
-//                            Glide.with(getActivity()).load(imageUri).into(imgPreview);
-//                        }
                     }
                 }
             });
