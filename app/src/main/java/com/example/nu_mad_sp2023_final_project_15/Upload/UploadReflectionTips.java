@@ -1,5 +1,6 @@
 package com.example.nu_mad_sp2023_final_project_15.Upload;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +14,14 @@ import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
+import com.example.nu_mad_sp2023_final_project_15.TravelInfo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UploadReflectionTips extends AppCompatActivity {
@@ -22,6 +30,7 @@ public class UploadReflectionTips extends AppCompatActivity {
     private TextView txtUploadTips;
     private Button btnUploadRTSave;
     private Button btnUploadRTExit;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,8 @@ public class UploadReflectionTips extends AppCompatActivity {
         btnUploadRTSave = findViewById(R.id.btnUploadRTSave);
         btnUploadRTExit = findViewById(R.id.btnUploadRTExit);
 
+        db = FirebaseFirestore.getInstance();
+
         String place = getIntent().getStringExtra("place");
         String date = getIntent().getStringExtra("date");
         List<Uri> images = getIntent().getParcelableArrayListExtra("images");
@@ -42,12 +53,19 @@ public class UploadReflectionTips extends AppCompatActivity {
         String culture = getIntent().getStringExtra("culture");
         String language = getIntent().getStringExtra("language");
 
+        List<String> stringImages = new ArrayList<>();
+
+        for (Uri uri : images) {
+            String uriString = uri.toString();
+            stringImages.add(uriString);
+        }
+
         btnUploadRTSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String reflection = txtUploadReflection.toString().trim();
-                String tips = txtUploadTips.toString().trim();
+                String reflection = txtUploadReflection.getText().toString().trim();
+                String tips = txtUploadTips.getText().toString().trim();
 
                 if (reflection.isEmpty()) {
                     Toast.makeText(getApplicationContext(),"Please enter notes on reflection and thoughts", Toast.LENGTH_LONG).show();
@@ -66,9 +84,30 @@ public class UploadReflectionTips extends AppCompatActivity {
                 Log.d("lang", language);
                 Log.d("reflec", reflection);
                 Log.d("Tips", tips);
-                if (images.size()!=0) {
+                if (stringImages.size()!=0) {
                     Log.d("images", "i have 'em all");
                 }
+
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                TravelInfo travelInfo = new TravelInfo(place, date, itinerary, expense,
+                        culture, language, reflection, tips, stringImages, userId);
+
+                db.collection("travel_info").add(travelInfo)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                String documentId = documentReference.getId();
+                                db.collection("travel_info").document(documentId).update("userId", userId);
+                                Toast.makeText(getApplicationContext(),"Travel Information saved.", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(),"Error saving Travel Information. " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
 
             }
         });
@@ -80,7 +119,6 @@ public class UploadReflectionTips extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 }

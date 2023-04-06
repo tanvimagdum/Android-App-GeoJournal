@@ -15,10 +15,12 @@ import android.widget.Toast;
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
 
+import org.w3c.dom.Text;
+
 public class UploadPlacePage extends AppCompatActivity {
 
-    private EditText txtUploadTravelPlace;
-    private EditText txtUploadTravelDate;
+    private TextView txtUploadTravelPlace;
+    private TextView txtUploadTravelDate;
     private Button btnUploadPlaceNext;
     private Button btnUploadPlaceExit;
 
@@ -40,9 +42,7 @@ public class UploadPlacePage extends AppCompatActivity {
                 String place = txtUploadTravelPlace.getText().toString().trim();
                 String date = txtUploadTravelDate.getText().toString().trim();
 
-                Log.d("place", place);
-
-                if (TextUtils.isEmpty(place)) {
+                if (place.isEmpty()) {
                     Toast.makeText(getApplicationContext(),"Please enter travel place", Toast.LENGTH_LONG).show();
                     return;
                 }

@@ -37,8 +37,8 @@ public class UploadItineraryExpensePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String itinerary = txtUploadItinerary.toString().trim();
-                String expense = txtUploadExpense.toString().trim();
+                String itinerary = txtUploadItinerary.getText().toString().trim();
+                String expense = txtUploadExpense.getText().toString().trim();
 
                 if (itinerary.isEmpty()) {
                     Toast.makeText(getApplicationContext(),"Please enter notes on itinerary and plans", Toast.LENGTH_LONG).show();

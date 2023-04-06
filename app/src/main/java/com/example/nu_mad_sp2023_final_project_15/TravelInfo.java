@@ -1,5 +1,7 @@
 package com.example.nu_mad_sp2023_final_project_15;
 
+import java.util.List;
+
 public class TravelInfo {
 
     private String trPlace;
@@ -10,14 +12,15 @@ public class TravelInfo {
     private String trLanguage;
     private String trReflection;
     private String trTips;
-    private String trImageUrl;
+    private List<String> trImageUrl;
+    private String userId;
 
     public TravelInfo() {
     }
 
     public TravelInfo(String trPlace, String trDate, String trItinerary,
                       String trExpense, String trCulture, String trLanguage,
-                      String trReflection, String trTips, String trImageUrl) {
+                      String trReflection, String trTips, List<String> trImageUrl, String userId) {
         this.trPlace = trPlace;
         this.trDate = trDate;
         this.trItinerary = trItinerary;
@@ -27,6 +30,7 @@ public class TravelInfo {
         this.trReflection = trReflection;
         this.trTips = trTips;
         this.trImageUrl = trImageUrl;
+        this.userId = userId;
     }
 
     public String getTrPlace() {
@@ -93,12 +97,20 @@ public class TravelInfo {
         this.trTips = trTips;
     }
 
-    public String getTrImageUrl() {
+    public List<String> getTrImageUrl() {
         return trImageUrl;
     }
 
-    public void setTrImageUrl(String trImageUrl) {
+    public void setTrImageUrl(List<String> trImageUrl) {
         this.trImageUrl = trImageUrl;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -112,7 +124,8 @@ public class TravelInfo {
                 ", trLanguage='" + trLanguage + '\'' +
                 ", trReflection='" + trReflection + '\'' +
                 ", trTips='" + trTips + '\'' +
-                ", trImageUrl='" + trImageUrl + '\'' +
+                ", trImageUrl=" + trImageUrl +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

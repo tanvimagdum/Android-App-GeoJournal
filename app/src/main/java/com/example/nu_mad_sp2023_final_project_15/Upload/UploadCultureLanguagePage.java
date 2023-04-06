@@ -34,8 +34,8 @@ public class UploadCultureLanguagePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String culture = txtUploadCulture.toString().trim();
-                String language = txtUploadLanguage.toString().trim();
+                String culture = txtUploadCulture.getText().toString().trim();
+                String language = txtUploadLanguage.getText().toString().trim();
 
                 if (culture.isEmpty()) {
                     Toast.makeText(getApplicationContext(),"Please enter notes on culture", Toast.LENGTH_LONG).show();
