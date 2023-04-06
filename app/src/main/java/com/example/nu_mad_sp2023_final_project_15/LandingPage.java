@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.nu_mad_sp2023_final_project_15.Upload.UploadPlacePage;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,16 +21,21 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Button myProfile;
+    private Button btnAddLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
         setTitle("Locations Visited");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        myProfile = findViewById(R.id.prof);
+
+        myProfile = findViewById(R.id.btnMyProfile);
+        btnAddLocation = findViewById(R.id.btnAddLocation);
+
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +45,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+
+        btnAddLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
