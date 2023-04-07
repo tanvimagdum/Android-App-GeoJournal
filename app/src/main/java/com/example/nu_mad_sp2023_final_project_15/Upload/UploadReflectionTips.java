@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
 import com.example.nu_mad_sp2023_final_project_15.TravelInfo;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,6 +46,8 @@ public class UploadReflectionTips extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        LatLng LatLng = getIntent().getParcelableExtra("LatLng");
+        String LatLngString = LatLng.latitude + "," + LatLng.longitude;
         String place = getIntent().getStringExtra("place");
         String date = getIntent().getStringExtra("date");
         List<Uri> images = getIntent().getParcelableArrayListExtra("images");
@@ -81,13 +84,11 @@ public class UploadReflectionTips extends AppCompatActivity {
                 TravelInfo travelInfo = new TravelInfo(place, date, itinerary, expense,
                         culture, language, reflection, tips, stringImages, userId);
 
-                db.collection("travel_info").add(travelInfo)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                db.collection("travel_info").document(LatLngString).set(travelInfo)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                String documentId = documentReference.getId();
-                                db.collection("travel_info").document(documentId).update("userId", userId);
-                                Toast.makeText(getApplicationContext(),"Travel Information saved.", Toast.LENGTH_LONG).show();
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getApplicationContext(), "Travel Information saved.", Toast.LENGTH_LONG).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -96,6 +97,9 @@ public class UploadReflectionTips extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Error saving Travel Information. " + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
+
+                Intent intent = new Intent(UploadReflectionTips.this, LandingPage.class);
+                startActivity(intent);
 
             }
         });

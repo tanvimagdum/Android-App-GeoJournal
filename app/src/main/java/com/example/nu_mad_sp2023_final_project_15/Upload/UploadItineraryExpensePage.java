@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
@@ -50,6 +51,8 @@ public class UploadItineraryExpensePage extends AppCompatActivity {
                 }
 
                 Intent intent = new Intent(UploadItineraryExpensePage.this, UploadCultureLanguagePage.class);
+                LatLng LatLng = getIntent().getParcelableExtra("LatLng");
+                intent.putExtra("LatLng", LatLng);
                 intent.putExtra("place", getIntent().getStringExtra("place"));
                 intent.putExtra("date", getIntent().getStringExtra("date"));
                 intent.putExtra("images", getIntent().getParcelableArrayListExtra("images"));

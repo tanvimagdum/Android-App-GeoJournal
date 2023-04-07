@@ -54,7 +54,8 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
-                intent.putExtra("LatLng", yellowMarker.getPosition().toString());
+                LatLng latlng = yellowMarker.getPosition();
+                intent.putExtra("LatLng", latlng);
                 startActivity(intent);
             }
         });

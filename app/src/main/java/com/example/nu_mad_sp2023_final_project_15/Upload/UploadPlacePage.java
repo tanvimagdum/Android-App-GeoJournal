@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.LandingPage;
 import com.example.nu_mad_sp2023_final_project_15.R;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.w3c.dom.Text;
 
@@ -52,6 +53,8 @@ public class UploadPlacePage extends AppCompatActivity {
                 }
 
                 Intent intent = new Intent(UploadPlacePage.this, UploadPicturesPage.class);
+                LatLng LatLng = getIntent().getParcelableExtra("LatLng");
+                intent.putExtra("LatLng", LatLng);
                 intent.putExtra("place", place);
                 intent.putExtra("date", date);
                 startActivity(intent);

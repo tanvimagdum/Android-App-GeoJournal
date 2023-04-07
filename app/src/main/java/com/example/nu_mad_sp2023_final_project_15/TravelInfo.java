@@ -6,7 +6,6 @@ import java.util.List;
 
 public class TravelInfo {
 
-    private LatLng trLocation;
     private String trPlace;
     private String trDate;
     private String trItinerary;
@@ -21,10 +20,10 @@ public class TravelInfo {
     public TravelInfo() {
     }
 
-    public TravelInfo(LatLng trLocation, String trPlace, String trDate, String trItinerary,
+    public TravelInfo(String trPlace, String trDate, String trItinerary,
                       String trExpense, String trCulture, String trLanguage,
                       String trReflection, String trTips, List<String> trImageUrl, String userId) {
-        this.
+
         this.trPlace = trPlace;
         this.trDate = trDate;
         this.trItinerary = trItinerary;
