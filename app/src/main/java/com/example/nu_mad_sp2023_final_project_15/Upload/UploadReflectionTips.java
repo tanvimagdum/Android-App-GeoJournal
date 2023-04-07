@@ -76,18 +76,6 @@ public class UploadReflectionTips extends AppCompatActivity {
                     return;
                 }
 
-                Log.d("place", place);
-                Log.d("date", date);
-                Log.d("itinerary", itinerary);
-                Log.d("expense", expense);
-                Log.d("culture", culture);
-                Log.d("lang", language);
-                Log.d("reflec", reflection);
-                Log.d("Tips", tips);
-                if (stringImages.size()!=0) {
-                    Log.d("images", "i have 'em all");
-                }
-
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 TravelInfo travelInfo = new TravelInfo(place, date, itinerary, expense,
