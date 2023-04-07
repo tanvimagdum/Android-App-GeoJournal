@@ -68,5 +68,13 @@
 
     <string name="em" />
     <string name="phno">Phone No</string>
+    <string name="flip_camera">Switch Camera</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="info">Click on the image to take a new one</string>
+    <string name="reginfo">Click on the image to upload photo</string>
+    <string name="inforeg">Click on the Image \n to upload your photo</string>
+    <string name="skip_photo">Done</string>
+    <string name="inforegimg">Click on the Image to upload a new one</string>
 
 </resources>
