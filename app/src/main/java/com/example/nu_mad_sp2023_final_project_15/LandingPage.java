@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.nu_mad_sp2023_final_project_15.Display.DisplayPage;
 import com.example.nu_mad_sp2023_final_project_15.Upload.UploadPlacePage;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -62,15 +64,24 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions()
+        float hue = BitmapDescriptorFactory.HUE_YELLOW;
+        MarkerOptions markerOptions = new MarkerOptions()
                 .position(sydney)
-                .title("Marker in Sydney"));
+                .title("Marker Title")
+                .icon(BitmapDescriptorFactory.defaultMarker(hue)).draggable(true);
+        Marker marker = mMap.addMarker(markerOptions);
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
+                Intent intent = new Intent(LandingPage.this, DisplayPage.class);
+
+                startActivity(intent);
                 return false;
             }
         });
+
+
     }
 }
