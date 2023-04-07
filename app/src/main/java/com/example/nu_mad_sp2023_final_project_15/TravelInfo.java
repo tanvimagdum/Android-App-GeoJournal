@@ -1,9 +1,12 @@
 package com.example.nu_mad_sp2023_final_project_15;
 
+import com.google.type.LatLng;
+
 import java.util.List;
 
 public class TravelInfo {
 
+    private LatLng trLocation;
     private String trPlace;
     private String trDate;
     private String trItinerary;
@@ -18,9 +21,10 @@ public class TravelInfo {
     public TravelInfo() {
     }
 
-    public TravelInfo(String trPlace, String trDate, String trItinerary,
+    public TravelInfo(LatLng trLocation, String trPlace, String trDate, String trItinerary,
                       String trExpense, String trCulture, String trLanguage,
                       String trReflection, String trTips, List<String> trImageUrl, String userId) {
+        this.
         this.trPlace = trPlace;
         this.trDate = trDate;
         this.trItinerary = trItinerary;
@@ -113,19 +117,4 @@ public class TravelInfo {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "TravelInfo{" +
-                "trPlace='" + trPlace + '\'' +
-                ", trDate='" + trDate + '\'' +
-                ", trItinerary='" + trItinerary + '\'' +
-                ", trExpense='" + trExpense + '\'' +
-                ", trCulture='" + trCulture + '\'' +
-                ", trLanguage='" + trLanguage + '\'' +
-                ", trReflection='" + trReflection + '\'' +
-                ", trTips='" + trTips + '\'' +
-                ", trImageUrl=" + trImageUrl +
-                ", userId='" + userId + '\'' +
-                '}';
-    }
 }
