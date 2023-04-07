@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,8 +19,11 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.nu_mad_sp2023_final_project_15.R;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,6 +66,8 @@ public class DisplayPage extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String documentId = "";
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +86,11 @@ public class DisplayPage extends AppCompatActivity {
         imgDisplayPictures = findViewById(R.id.imgDisplayPictures);
         imgDisplayPrevious = findViewById(R.id.imgDisplayPrevious);
         imgDisplayNext = findViewById(R.id.imgDisplayNext);
-
-        db.collection("travel_info").document(documentId).get()
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        LatLng LatLng = getIntent().getParcelableExtra("LatLng");
+        String LatLngString = LatLng.latitude + "," + LatLng.longitude;
+        db.collection(currentUser.getEmail()).document(LatLngString).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -140,59 +149,59 @@ public class DisplayPage extends AppCompatActivity {
             }
         });
 
-        cardItinerary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DisplayPage.this, DisplayItineraryActivity.class);
-                intent.putExtra("itinerary", itinerary);
-                startActivity(intent);
-            }
-        });
-
-        cardCulture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DisplayPage.this, DisplayCultureActivity.class);
-                intent.putExtra("culture", culture);
-                startActivity(intent);
-            }
-        });
-
-        cardLanguage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DisplayPage.this, DisplayLanguageActivity.class);
-                intent.putExtra("language", language);
-                startActivity(intent);
-            }
-        });
-
-        cardTravelTips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DisplayPage.this, DisplayTipsActivity.class);
-                intent.putExtra("travelTips", travelTips);
-                startActivity(intent);
-            }
-        });
-
-        cardReflections.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DisplayPage.this, DisplayReflectionActivity.class);
-                intent.putExtra("reflections", reflections);
-                startActivity(intent);
-            }
-        });
-
-        cardExpenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DisplayPage.this, DisplayExpensesActivity.class);
-                intent.putExtra("expenses", expenses);
-                startActivity(intent);
-            }
-        });
+//        cardItinerary.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DisplayPage.this, DisplayItineraryActivity.class);
+//                intent.putExtra("itinerary", itinerary);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        cardCulture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DisplayPage.this, DisplayCultureActivity.class);
+//                intent.putExtra("culture", culture);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        cardLanguage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DisplayPage.this, DisplayLanguageActivity.class);
+//                intent.putExtra("language", language);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        cardTravelTips.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DisplayPage.this, DisplayTipsActivity.class);
+//                intent.putExtra("travelTips", travelTips);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        cardReflections.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DisplayPage.this, DisplayReflectionActivity.class);
+//                intent.putExtra("reflections", reflections);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        cardExpenses.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DisplayPage.this, DisplayExpensesActivity.class);
+//                intent.putExtra("expenses", expenses);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 

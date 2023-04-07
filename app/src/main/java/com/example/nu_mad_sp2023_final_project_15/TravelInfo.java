@@ -15,14 +15,13 @@ public class TravelInfo {
     private String trReflection;
     private String trTips;
     private List<String> trImageUrl;
-    private String userId;
 
     public TravelInfo() {
     }
 
     public TravelInfo(String trPlace, String trDate, String trItinerary,
                       String trExpense, String trCulture, String trLanguage,
-                      String trReflection, String trTips, List<String> trImageUrl, String userId) {
+                      String trReflection, String trTips, List<String> trImageUrl) {
 
         this.trPlace = trPlace;
         this.trDate = trDate;
@@ -33,7 +32,6 @@ public class TravelInfo {
         this.trReflection = trReflection;
         this.trTips = trTips;
         this.trImageUrl = trImageUrl;
-        this.userId = userId;
     }
 
     public String getTrPlace() {
@@ -106,14 +104,6 @@ public class TravelInfo {
 
     public void setTrImageUrl(List<String> trImageUrl) {
         this.trImageUrl = trImageUrl;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
 }

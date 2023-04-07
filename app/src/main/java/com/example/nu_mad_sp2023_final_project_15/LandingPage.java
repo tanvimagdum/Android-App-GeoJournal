@@ -19,6 +19,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LandingPage extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -26,13 +33,18 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
     private Button myProfile;
     private Button btnAddLocation;
     private Marker yellowMarker;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
         setTitle("Locations Visited");
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -54,37 +66,52 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
-                LatLng latlng = yellowMarker.getPosition();
-                intent.putExtra("LatLng", latlng);
+                intent.putExtra("LatLng", yellowMarker.getPosition());
                 startActivity(intent);
             }
         });
-
     }
+
+
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+        Log.d("demo","this is called--------------");
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng draggable = new LatLng(-0, 151);
         float hue = BitmapDescriptorFactory.HUE_YELLOW;
         MarkerOptions markerOptions = new MarkerOptions()
-                .position(sydney)
+                .position(draggable)
                 .title("Draggable Marker")
                 .icon(BitmapDescriptorFactory.defaultMarker(hue)).draggable(true);
         yellowMarker = mMap.addMarker(markerOptions);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Task<QuerySnapshot> snapshots = db.collection(currentUser.getEmail()).get();
+        snapshots.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for(DocumentSnapshot document : task.getResult().getDocuments()){
+                    String[] coordinates = document.getId().split(",");
+                    LatLng pos = new LatLng(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
+                    float hue_red = BitmapDescriptorFactory.HUE_RED;
+                    MarkerOptions markerOptionsRed = new MarkerOptions()
+                            .position(pos)
+                            .title("")
+                            .icon(BitmapDescriptorFactory.defaultMarker(hue_red)).draggable(false);
+                    mMap.addMarker(markerOptionsRed);
+                }
+            }
+        });
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(draggable));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-                Log.d("demo",sydney.toString());
                 if(marker.getTitle().equals("Draggable Marker")){
                     return false;
                 }
                 Intent intent = new Intent(LandingPage.this, DisplayPage.class);
-                LatLng syd = marker.getPosition();
+                intent.putExtra("LatLng",marker.getPosition());
                 startActivity(intent);
                 return false;
             }

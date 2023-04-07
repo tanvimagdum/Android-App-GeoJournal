@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,13 +33,16 @@ public class UploadReflectionTips extends AppCompatActivity {
     private Button btnUploadRTSave;
     private Button btnUploadRTExit;
     private FirebaseFirestore db;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_reflection_tips);
         setTitle("Add Location");
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
         txtUploadReflection = findViewById(R.id.txtUploadReflection);
         txtUploadTips = findViewById(R.id.txtUploadTips);
         btnUploadRTSave = findViewById(R.id.btnUploadRTSave);
@@ -82,9 +86,9 @@ public class UploadReflectionTips extends AppCompatActivity {
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 TravelInfo travelInfo = new TravelInfo(place, date, itinerary, expense,
-                        culture, language, reflection, tips, stringImages, userId);
+                        culture, language, reflection, tips, stringImages);
 
-                db.collection("travel_info").document(LatLngString).set(travelInfo)
+                db.collection(currentUser.getEmail()).document(LatLngString).set(travelInfo)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
