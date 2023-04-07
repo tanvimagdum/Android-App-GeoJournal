@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -24,6 +25,7 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Button myProfile;
     private Button btnAddLocation;
+    private Marker yellowMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
+                intent.putExtra("lat",yellowMarker.getPosition().latitude);
+                intent.putExtra("lng",yellowMarker.getPosition().longitude);
                 startActivity(intent);
             }
         });
@@ -67,16 +71,20 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
         float hue = BitmapDescriptorFactory.HUE_YELLOW;
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(sydney)
-                .title("Marker Title")
+                .title("Draggable Marker")
                 .icon(BitmapDescriptorFactory.defaultMarker(hue)).draggable(true);
-        Marker marker = mMap.addMarker(markerOptions);
+        yellowMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
+                Log.d("demo",sydney.toString());
+                if(marker.getTitle().equals("Draggable Marker")){
+                    return false;
+                }
                 Intent intent = new Intent(LandingPage.this, DisplayPage.class);
-
+                LatLng syd = marker.getPosition();
                 startActivity(intent);
                 return false;
             }
