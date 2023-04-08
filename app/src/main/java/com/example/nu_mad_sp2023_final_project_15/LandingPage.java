@@ -27,6 +27,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class LandingPage extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -73,18 +76,14 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        Log.d("demo","this is called--------------");
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng draggable = new LatLng(-0, 151);
+        LatLng draggable = new LatLng(0, 0);
         float hue = BitmapDescriptorFactory.HUE_YELLOW;
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(draggable)
-                .title("Draggable Marker")
+                .title("Drag this marker to any location that you want to add")
                 .icon(BitmapDescriptorFactory.defaultMarker(hue)).draggable(true);
         yellowMarker = mMap.addMarker(markerOptions);
         Task<QuerySnapshot> snapshots = db.collection(currentUser.getEmail()).get();
@@ -97,7 +96,7 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
                     float hue_red = BitmapDescriptorFactory.HUE_RED;
                     MarkerOptions markerOptionsRed = new MarkerOptions()
                             .position(pos)
-                            .title("")
+                            .title(document.get("trPlace").toString())
                             .icon(BitmapDescriptorFactory.defaultMarker(hue_red)).draggable(false);
                     mMap.addMarker(markerOptionsRed);
                 }
@@ -116,7 +115,26 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
                 return false;
             }
         });
+        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDrag(@NonNull Marker marker) {
 
+            }
 
+            @Override
+            public void onMarkerDragEnd(@NonNull Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDragStart(@NonNull Marker marker) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }
