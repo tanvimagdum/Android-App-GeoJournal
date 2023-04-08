@@ -3,8 +3,12 @@ package com.example.nu_mad_sp2023_final_project_15.Display;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,9 +54,7 @@ public class DisplayPage extends AppCompatActivity {
     private CardView cardLanguage;
     private CardView cardReflections;
     private CardView cardExpenses;
-
     private int currentIndex;
-
     private String place;
     private String date;
     private String itinerary;
@@ -61,11 +63,8 @@ public class DisplayPage extends AppCompatActivity {
     private String reflections;
     private String language;
     private String expenses;
-
     private List<String> images;
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String documentId = "";
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
 
@@ -86,10 +85,18 @@ public class DisplayPage extends AppCompatActivity {
         imgDisplayPictures = findViewById(R.id.imgDisplayPictures);
         imgDisplayPrevious = findViewById(R.id.imgDisplayPrevious);
         imgDisplayNext = findViewById(R.id.imgDisplayNext);
+        cardItinerary = findViewById(R.id.cardItinerary);
+        cardCulture = findViewById(R.id.cardCulture);
+        cardTravelTips = findViewById(R.id.cardTravelTips);
+        cardLanguage = findViewById(R.id.cardLanguage);
+        cardReflections = findViewById(R.id.cardReflections);
+        cardExpenses = findViewById(R.id.cardExpenses);
+
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         LatLng LatLng = getIntent().getParcelableExtra("LatLng");
         String LatLngString = LatLng.latitude + "," + LatLng.longitude;
+
         db.collection(currentUser.getEmail()).document(LatLngString).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -149,94 +156,82 @@ public class DisplayPage extends AppCompatActivity {
             }
         });
 
-//        cardItinerary.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DisplayPage.this, DisplayItineraryActivity.class);
-//                intent.putExtra("itinerary", itinerary);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        cardCulture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DisplayPage.this, DisplayCultureActivity.class);
-//                intent.putExtra("culture", culture);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        cardLanguage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DisplayPage.this, DisplayLanguageActivity.class);
-//                intent.putExtra("language", language);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        cardTravelTips.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DisplayPage.this, DisplayTipsActivity.class);
-//                intent.putExtra("travelTips", travelTips);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        cardReflections.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DisplayPage.this, DisplayReflectionActivity.class);
-//                intent.putExtra("reflections", reflections);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        cardExpenses.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DisplayPage.this, DisplayExpensesActivity.class);
-//                intent.putExtra("expenses", expenses);
-//                startActivity(intent);
-//            }
-//        });
+        cardItinerary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPage.this, DisplayItineraryActivity.class);
+                intent.putExtra("itinerary", itinerary);
+                startActivity(intent);
+            }
+        });
+
+        cardCulture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPage.this, DisplayCultureActivity.class);
+                intent.putExtra("culture", culture);
+                startActivity(intent);
+            }
+        });
+
+        cardLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPage.this, DisplayLanguageActivity.class);
+                intent.putExtra("language", language);
+                startActivity(intent);
+            }
+        });
+
+        cardTravelTips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPage.this, DisplayTipsActivity.class);
+                intent.putExtra("travelTips", travelTips);
+                startActivity(intent);
+            }
+        });
+
+        cardReflections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPage.this, DisplayReflectionActivity.class);
+                intent.putExtra("reflections", reflections);
+                startActivity(intent);
+            }
+        });
+
+        cardExpenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPage.this, DisplayExpensesActivity.class);
+                intent.putExtra("expenses", expenses);
+                startActivity(intent);
+            }
+        });
 
     }
 
     private void displayImage() {
+
         String imgUrl = images.get(currentIndex);
         disableButtons();
-        Glide.with(DisplayPage.this)
-                .load(imgUrl)
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(GlideException e, Object model,
-                                                Target<Drawable> target, boolean isFirstResource) {
+        Glide.with(imgDisplayPictures.getContext()).load(imgUrl).into(imgDisplayPictures);
 
-                        Toast.makeText(DisplayPage.this, "Failed to load image", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model,
-                                                   Target<Drawable> target, DataSource dataSource,
-                                                   boolean isFirstResource) {
-                        return false;
-                    }
-                })
-                .into(imgDisplayPictures);
     }
 
     private void enableButtons() {
         imgDisplayPrevious.setEnabled(true);
         imgDisplayNext.setEnabled(true);
+        imgDisplayPrevious.setVisibility(View.VISIBLE);
+        imgDisplayNext.setVisibility(View.VISIBLE);
     }
 
     private void disableButtons() {
         imgDisplayPrevious.setEnabled(false);
         imgDisplayNext.setEnabled(false);
+        imgDisplayPrevious.setVisibility(View.INVISIBLE);
+        imgDisplayNext.setVisibility(View.INVISIBLE);
     }
 
 }
