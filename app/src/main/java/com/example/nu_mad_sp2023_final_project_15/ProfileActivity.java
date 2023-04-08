@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
                             }
                         }
                     });
-                }else{
+                }else if(!profConfPwd.getText().toString().equals(profPwd.getText().toString())){
                     Toast.makeText(getApplicationContext(),
                             "Password Do not match.",
                             Toast.LENGTH_LONG).show();
