@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NU_MAD_SP2023_Final_Project_15</string>
+    <string name="app_name">GeoJournal</string>
     <string name="google_map_api_key">AIzaSyBIxPUIlgWvpiqzbv8Y1ovoxmDoiDiHEUQ</string>
     <string name="empty" />
 
@@ -78,5 +78,7 @@
     <string name="inforegimg">Click on the Image to upload a new one</string>
     <string name="changepwd">Change Password</string>
     <string name="confpwd">Confirm \n Change Password</string>
+
+    <string name="lblDropPinNote">NOTE - Drag the Yellow marker wherever you want to Add Location, then proceed with adding new location. Red markers show the locations you have already added.</string>
 
 </resources>

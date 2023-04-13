@@ -94,7 +94,9 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent intent
                         = new Intent(ProfileActivity.this,
                         LoginAndSignUp.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
             }
         });
         saveProfile.setOnClickListener(new View.OnClickListener() {
