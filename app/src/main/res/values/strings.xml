@@ -76,5 +76,7 @@
     <string name="inforeg">Click on the Image \n to upload your photo</string>
     <string name="skip_photo">Done</string>
     <string name="inforegimg">Click on the Image to upload a new one</string>
+    <string name="changepwd">Change Password</string>
+    <string name="confpwd">Confirm \n Change Password</string>
 
 </resources>

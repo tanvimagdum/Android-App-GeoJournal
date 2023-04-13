@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/lblProfilePassword"
+        android:text="@string/changepwd"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/lblProfileEmail"
         app:layout_constraintTop_toBottomOf="@+id/lblProfileEmail" />
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/lblProfileConfirmPassword"
+        android:text="@string/confpwd"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/lblProfilePassword"
         app:layout_constraintTop_toBottomOf="@+id/lblProfilePassword" />
