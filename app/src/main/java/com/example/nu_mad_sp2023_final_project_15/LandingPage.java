@@ -75,6 +75,17 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser == null){
+            Intent intent
+                    = new Intent(LandingPage.this,
+                    LoginAndSignUp.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -106,7 +117,7 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-                if(marker.getTitle().equals("Draggable Marker")){
+                if(marker.getTitle().equals("Drag this marker to any location that you want to add")){
                     return false;
                 }
                 Intent intent = new Intent(LandingPage.this, DisplayPage.class);
@@ -135,6 +146,6 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onBackPressed() {
-        return;
+        moveTaskToBack(true);
     }
 }
