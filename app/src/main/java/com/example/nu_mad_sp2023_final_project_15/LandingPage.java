@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.nu_mad_sp2023_final_project_15.Display.DisplayPage;
 import com.example.nu_mad_sp2023_final_project_15.Upload.UploadPlacePage;
@@ -39,12 +40,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
+    private boolean isMarkerDragged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
         setTitle("Locations Visited");
+
+        isMarkerDragged = false;
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
@@ -68,9 +72,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
         btnAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
-                intent.putExtra("LatLng", yellowMarker.getPosition());
-                startActivity(intent);
+                if (isMarkerDragged) {
+                    Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
+                    intent.putExtra("LatLng", yellowMarker.getPosition());
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please drag the yellow marker to set " +
+                            "the location before adding.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -139,7 +149,7 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
 
             @Override
             public void onMarkerDragStart(@NonNull Marker marker) {
-
+                isMarkerDragged = true;
             }
         });
     }
