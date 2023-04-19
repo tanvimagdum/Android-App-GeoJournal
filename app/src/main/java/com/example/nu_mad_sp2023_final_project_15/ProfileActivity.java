@@ -3,9 +3,12 @@ package com.example.nu_mad_sp2023_final_project_15;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -103,6 +106,15 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return;
+                }
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(profConfPwd.getText().toString().equals(profPwd.getText().toString()) && !profPwd.getText().toString().trim().equals("")) {
                     user.updatePassword(profPwd.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -142,6 +154,15 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if(!isNetworkAvailable()){
+            Context context = getApplicationContext();
+            CharSequence text = "No Internet Connection!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            Toast.makeText(context, text, duration);
+            return;
+        }
         setImg();
     }
 
@@ -158,5 +179,12 @@ public class ProfileActivity extends AppCompatActivity {
                 profImg.setRotation(90);
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

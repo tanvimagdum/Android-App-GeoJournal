@@ -3,7 +3,10 @@ package com.example.nu_mad_sp2023_final_project_15;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +59,15 @@ public class LoginAndSignUp extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return;
+                }
                 if(signUpEmail.getText().toString().trim().equals("") ||
                         signUpPassword.getText().toString().trim().equals("") ||
                         confirmPassword.getText().toString().trim().equals("") ||
@@ -84,6 +96,15 @@ public class LoginAndSignUp extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return;
+                }
                 if(email.getText().toString().trim().equals("") || password.getText().toString().trim().equals("")){
                     Toast.makeText(
                                     getApplicationContext(),
@@ -100,6 +121,15 @@ public class LoginAndSignUp extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        if(!isNetworkAvailable()){
+            Context context = getApplicationContext();
+            CharSequence text = "No Internet Connection!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            Toast.makeText(context, text, duration);
+            return;
+        }
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if(currentUser != null){
@@ -183,5 +213,12 @@ public class LoginAndSignUp extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

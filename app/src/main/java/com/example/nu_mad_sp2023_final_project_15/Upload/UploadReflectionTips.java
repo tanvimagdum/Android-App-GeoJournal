@@ -3,7 +3,10 @@ package com.example.nu_mad_sp2023_final_project_15.Upload;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,6 +73,15 @@ public class UploadReflectionTips extends AppCompatActivity {
         btnUploadRTSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return;
+                }
 
                 String reflection = txtUploadReflection.getText().toString().trim();
                 String tips = txtUploadTips.getText().toString().trim();
@@ -116,5 +128,12 @@ public class UploadReflectionTips extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

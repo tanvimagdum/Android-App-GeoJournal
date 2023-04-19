@@ -3,7 +3,10 @@ package com.example.nu_mad_sp2023_final_project_15;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,6 +65,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return;
+                }
                 Intent intent
                         = new Intent(LandingPage.this,
                         ProfileActivity.class);
@@ -73,6 +85,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 if (isMarkerDragged) {
+                    if(!isNetworkAvailable()){
+                        Context context = getApplicationContext();
+                        CharSequence text = "No Internet Connection!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        Toast.makeText(context, text, duration);
+                        return;
+                    }
                     Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
                     intent.putExtra("LatLng", yellowMarker.getPosition());
                     startActivity(intent);
@@ -88,6 +109,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onStart() {
         super.onStart();
+        if(!isNetworkAvailable()){
+            Context context = getApplicationContext();
+            CharSequence text = "No Internet Connection!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            Toast.makeText(context, text, duration);
+            return;
+        }
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if(currentUser == null){
             Intent intent
@@ -130,6 +160,15 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
                 if(marker.getTitle().equals("Drag this marker to any location that you want to add")){
                     return false;
                 }
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return false;
+                }
                 Intent intent = new Intent(LandingPage.this, DisplayPage.class);
                 intent.putExtra("LatLng",marker.getPosition());
                 startActivity(intent);
@@ -157,5 +196,12 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
