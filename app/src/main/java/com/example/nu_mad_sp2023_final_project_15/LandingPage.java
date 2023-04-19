@@ -84,16 +84,16 @@ public class LandingPage extends AppCompatActivity implements OnMapReadyCallback
         btnAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isNetworkAvailable()){
+                    Context context = getApplicationContext();
+                    CharSequence text = "No Internet Connection!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    Toast.makeText(context, text, duration);
+                    return;
+                }
                 if (isMarkerDragged) {
-                    if(!isNetworkAvailable()){
-                        Context context = getApplicationContext();
-                        CharSequence text = "No Internet Connection!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                        Toast.makeText(context, text, duration);
-                        return;
-                    }
                     Intent intent = new Intent(LandingPage.this, UploadPlacePage.class);
                     intent.putExtra("LatLng", yellowMarker.getPosition());
                     startActivity(intent);
