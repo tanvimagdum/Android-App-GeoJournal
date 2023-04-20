@@ -73,7 +73,8 @@ public class LoginAndSignUp extends AppCompatActivity {
                         confirmPassword.getText().toString().trim().equals("") ||
                         displayName.getText().toString().trim().equals("") ||
                         firstName.getText().toString().trim().equals("") ||
-                        lastName.getText().toString().trim().equals("")){
+                        lastName.getText().toString().trim().equals("") ||
+                        signUpPhno.getText().toString().trim().equals("")){
                     Toast.makeText(
                                     getApplicationContext(),
                                     "Please enter the input fields first",
